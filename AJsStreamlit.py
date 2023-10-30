@@ -10,6 +10,7 @@ import datetime
 import warnings
 import hmac
 warnings.simplefilter(action='ignore', category=FutureWarning)
+st.set_page_config(layout="wide")
 
 key = st.secrets["key"]
 drKey = st.secrets["drKey"]
@@ -42,7 +43,6 @@ if not check_password():
     st.stop()  # Do not continue if check_password is not True.
 
 
-st.set_page_config(layout="wide")
 
 def getData(key, boardId):
     #key = "5bxU25LFJn6pXAHHbJdEfTHZBJPhuU"
