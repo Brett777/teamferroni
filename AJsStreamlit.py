@@ -11,7 +11,7 @@ import warnings
 import hmac
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
-rahbKey = st.secrets["rahbKey"]
+key = st.secrets["key"]
 drKey = st.secrets["drKey"]
 
 def check_password():
@@ -219,7 +219,7 @@ def getData(key, boardId):
     return df
 
 
-df = getData(key = rahbKey, boardId="19")
+df = getData(key = key, boardId="19")
 df["Days Since List"] = 1
 df["association_id"] = df["address.unitNumber"].astype(str) + df["address.streetNumber"].astype(str) + df["address.streetName"].str.upper() + df["Postal FSA"].str.upper()
 st.write("Historical property data loaded.")
