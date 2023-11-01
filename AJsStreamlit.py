@@ -226,7 +226,7 @@ df = getData(key = key, boardId="19")
 df["Days Since List"] = 1
 df["association_id"] = df["address.unitNumber"].astype(str) + df["address.streetNumber"].astype(str) + df["address.streetName"].str.upper() + "A1B 2C3"
 st.write("Historical property data loaded.")
-
+st.dataframe(df)
 with st.spinner("Processing Estimates"):
 
     dr.Client(token=drKey, endpoint='https://app.datarobot.com/api/v2')
