@@ -224,7 +224,7 @@ df = getData(key = key, boardId="19")
 # st.dataframe(df)
 # st.dataframe(df[["address.streetNumber","address.streetName","Postal FSA"]])
 df["Days Since List"] = 1
-# df["association_id"] = df["address.unitNumber"].astype(str) + df["address.streetNumber"].astype(str) + df["address.streetName"].str.upper() + df["Postal FSA"].str.upper()
+df["association_id"] = df["address.unitNumber"].astype(str) + df["address.streetNumber"].astype(str) + df["address.streetName"].str.upper() + "A1B 2C3"
 st.write("Historical property data loaded.")
 
 with st.spinner("Processing Estimates"):
