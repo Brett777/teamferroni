@@ -64,7 +64,8 @@ def getData(key, boardId):
     progressBar = st.progress(0, text="")
 
 
-    for i in range(1, (json_string["numPages"] + 1)):
+    # for i in range(1, (json_string["numPages"] + 1)):
+    for i in range(1, (2 + 1)):
         with col1:
             progressBar.progress(value=i/(json_string["numPages"] + 1), text="Getting historical sales data... " +str(i))
         conn = http.client.HTTPSConnection("api.repliers.io")
@@ -221,6 +222,7 @@ def getData(key, boardId):
 
 df = getData(key = key, boardId="19")
 st.dataframe(df)
+st.dataframe(df[["address.streetNumber","address.streetName"]])
 df["Days Since List"] = 1
 df["association_id"] = df["address.unitNumber"].astype(str) + df["address.streetNumber"].astype(str) + df["address.streetName"].str.upper() + df["Postal FSA"].str.upper()
 st.write("Historical property data loaded.")
