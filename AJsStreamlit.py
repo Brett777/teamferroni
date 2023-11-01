@@ -222,7 +222,7 @@ def getData(key, boardId):
 
 df = getData(key = key, boardId="19")
 st.dataframe(df)
-st.dataframe(df[["address.streetNumber","address.streetName"]])
+st.dataframe(df[["address.streetNumber","address.streetName","Postal FSA"]])
 df["Days Since List"] = 1
 df["association_id"] = df["address.unitNumber"].astype(str) + df["address.streetNumber"].astype(str) + df["address.streetName"].str.upper() + df["Postal FSA"].str.upper()
 st.write("Historical property data loaded.")
