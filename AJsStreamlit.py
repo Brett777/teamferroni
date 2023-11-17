@@ -42,8 +42,6 @@ def check_password():
 if not check_password():
     st.stop()  # Do not continue if check_password is not True.
 
-
-
 def getData(key, boardId):
     #key = "5bxU25LFJn6pXAHHbJdEfTHZBJPhuU"
     #boardId = "19"
@@ -219,9 +217,9 @@ def getData(key, boardId):
     print("after dedupe: " + str(len(df)))
     return df
 
-
 df = getData(key = key, boardId="19")
-st.dataframe(df[["address.streetNumber","address.streetName","Postal FSA"]])
+st.write(df.shape)
+#st.dataframe(df[["address.streetNumber","address.streetName","Postal FSA"]])
 df["Days Since List"] = 1
 df["association_id"] = df["address.unitNumber"].astype(str) + df["address.streetNumber"].astype(str) + df["address.streetName"].str.upper() + df["address.zip"].astype(str).str.upper()
 df["listDate"] = pd.to_datetime(df["listDate"]).dt.date
