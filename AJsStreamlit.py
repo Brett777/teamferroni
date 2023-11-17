@@ -43,14 +43,11 @@ if not check_password():
     st.stop()  # Do not continue if check_password is not True.
 
 
-#key = "5bxU25LFJn6pXAHHbJdEfTHZBJPhuU"
-#boardId = "19"
-
 conn = http.client.HTTPSConnection("api.repliers.io")
 payload = "{}"
 headers = {'repliers-api-key': str(key)}
 
-
+boardId = "19"
 df = pd.DataFrame()
 conn = http.client.HTTPSConnection("api.repliers.io")
 conn.request("GET", "/listings?boardId=" + str(boardId) + "&agent=1063204&sortBy=createdOnDesc&pageNum=1&type=sale&status=A&status=U", payload, headers)
@@ -217,7 +214,6 @@ df = df.reset_index(drop=True)
 print("after dedupe: " + str(len(df)))
 
 
-df = getData(key = key, boardId="19")
 st.write(df.shape)
 #st.dataframe(df[["address.streetNumber","address.streetName","Postal FSA"]])
 df["Days Since List"] = 1
