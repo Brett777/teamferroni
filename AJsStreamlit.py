@@ -266,6 +266,8 @@ with st.spinner("Processing Estimates"):
                                             "taxes.annualAmount"]].sort_values(by="soldDate", ascending=True).reset_index(drop=True)
 
 
+st.header("Team Ferroni Sales")
+st.caption("Click the download button below to get this data as a spreadsheet.")
 st.dataframe(AJsProperties_scored)
 def to_excel(df) -> bytes:
     output = io.BytesIO()
