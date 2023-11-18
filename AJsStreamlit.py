@@ -33,7 +33,7 @@ def check_password():
     # Show input for password.
     with st.form("password form"):
         st.session_state["password"] = st.text_input("Password", type="password")
-        submitted = st.form_submit_button("Submit")
+        submitted = st.form_submit_button("Login")
         if submitted:
             password_entered()
     if "password_correct" in st.session_state:
