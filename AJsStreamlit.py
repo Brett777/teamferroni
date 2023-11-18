@@ -219,7 +219,7 @@ df["association_id"] = df["address.unitNumber"].astype(str) + df["address.street
 df["listDate"] = pd.to_datetime(df["listDate"]).dt.date
 df["soldDate"] = pd.to_datetime(df["soldDate"]).dt.date
 
-with st.spinner("Processing Estimates. This usually takes about 30 seconds, hang tight..."):
+with st.spinner("Calculating current market value for " + str(len(df)) + "properties. This usually takes about 30 seconds, hang tight..."):
 
     dr.Client(token=drKey, endpoint='https://app.datarobot.com/api/v2')
 
@@ -268,7 +268,7 @@ with st.spinner("Processing Estimates. This usually takes about 30 seconds, hang
 
 st.header("Team Ferroni Sales")
 st.caption("Click the download button below to get this data as a spreadsheet.")
-st.dataframe(AJsProperties_scored.sort_values("soldDate", ascending=False))
+st.dataframe(AJsProperties_scored.sort_values("soldDate", ascending=False).reset_index(drop=True))
 def to_excel(df) -> bytes:
     output = io.BytesIO()
     writer = pd.ExcelWriter(output, engine="xlsxwriter")
