@@ -38,6 +38,7 @@ def check_password():
             if submitted:
                 password_entered()
                 if st.session_state.get("password_correct", False):
+                    password_form = password_form.empty()
                     return True
                 if "password_correct" in st.session_state:
                     st.error("😕 Password incorrect")
@@ -47,7 +48,7 @@ def check_password():
 if not check_password():
     st.stop()  # Do not continue if check_password is not True.
 
-password_form.empty()
+
 conn = http.client.HTTPSConnection("api.repliers.io")
 payload = "{}"
 headers = {'repliers-api-key': str(key)}
