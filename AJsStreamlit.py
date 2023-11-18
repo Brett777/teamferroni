@@ -31,9 +31,11 @@ def check_password():
         return True
 
     # Show input for password.
-    st.text_input(
-        "Password", type="password", on_change=password_entered, key="password"
-    )
+    with st.form("password form"):
+        st.session_state["password"] = st.text_input("Password", type="password")
+        submitted = st.form_submit_button("Submit")
+        if submitted:
+            password_entered()
     if "password_correct" in st.session_state:
         st.error("😕 Password incorrect")
     return False
@@ -59,8 +61,8 @@ col1, col2 = container1.columns([1,3])
 progressBar = st.progress(0, text="")
 
 
-for i in range(1, (json_string["numPages"] + 1)):
-#for i in range(1, (2 + 1)):
+#for i in range(1, (json_string["numPages"] + 1)):
+for i in range(1, (2 + 1)):
     with col1:
         progressBar.progress(value=i/(json_string["numPages"] + 1), text="Getting historical sales data... " +str(i))
     conn = http.client.HTTPSConnection("api.repliers.io")
