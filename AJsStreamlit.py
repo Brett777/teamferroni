@@ -219,7 +219,7 @@ df["association_id"] = df["address.unitNumber"].astype(str) + df["address.street
 df["listDate"] = pd.to_datetime(df["listDate"]).dt.date
 df["soldDate"] = pd.to_datetime(df["soldDate"]).dt.date
 
-with st.spinner("Calculating current market value for your " + str(len(df)) + " properties. Usually takes 30 seconds to a minute, so hang tight..."):
+with st.spinner("Calculating current market value for your " + str(len(df)) + " properties. This takes 30 seconds to a minute. Hang tight..."):
 
     dr.Client(token=drKey, endpoint='https://app.datarobot.com/api/v2')
 
