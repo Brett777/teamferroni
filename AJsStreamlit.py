@@ -76,6 +76,7 @@ for i in range(1, (2 + 1)):
     # df = df.append(dfPage).reset_index(drop=True)
     print(str(i) + " out of " + str(json_string["numPages"]))
 progressBar.empty()
+print("length of dataframe: " +str(len(df)))
 try:
     if len(df) > 0:
         df = df.drop_duplicates("mlsNumber")
