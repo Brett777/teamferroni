@@ -30,15 +30,18 @@ def check_password():
 
 
     # Show input for password.
-    with st.form("password form"):
-        st.session_state["password"] = st.text_input("Password", type="password")
-        submitted = st.form_submit_button("Login")
-        if submitted:
-            password_entered()
-            if st.session_state.get("password_correct", False):
-                return True
-            if "password_correct" in st.session_state:
-                st.error("😕 Password incorrect")
+    password_form = st.container()
+    with password_form:
+        with st.form("password form"):
+            st.session_state["password"] = st.text_input("Password", type="password")
+            submitted = st.form_submit_button("Login")
+            if submitted:
+                password_entered()
+                if st.session_state.get("password_correct", False):
+                    password_form.empty()
+                    return True
+                if "password_correct" in st.session_state:
+                    st.error("😕 Password incorrect")
     return False
 
 
