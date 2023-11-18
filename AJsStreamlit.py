@@ -213,15 +213,12 @@ df = df.drop_duplicates("mlsNumber")
 df = df.reset_index(drop=True)
 print("after dedupe: " + str(len(df)))
 
-
-st.write(df.shape)
 #st.dataframe(df[["address.streetNumber","address.streetName","Postal FSA"]])
 df["Days Since List"] = 1
 df["association_id"] = df["address.unitNumber"].astype(str) + df["address.streetNumber"].astype(str) + df["address.streetName"].str.upper() + df["address.zip"].astype(str).str.upper()
 df["listDate"] = pd.to_datetime(df["listDate"]).dt.date
 df["soldDate"] = pd.to_datetime(df["soldDate"]).dt.date
-#st.write("Historical property data loaded.")
-st.dataframe(df)
+
 with st.spinner("Processing Estimates"):
 
     dr.Client(token=drKey, endpoint='https://app.datarobot.com/api/v2')
@@ -278,10 +275,12 @@ def to_excel(df) -> bytes:
     processed_data = output.getvalue()
     return processed_data
 
+today = datetime.datetime.today().date()
+
 st.download_button(
-        "Download all",
+        "Download as Excel",
         data=to_excel(AJsProperties_scored),
-        file_name="intput.xlsx",
+        file_name="Team_Ferroni_Sales_And_Current_Estimates"+"_"+str(today)+".xlsx",
         mime="application/vnd.ms-excel",
     )
 
