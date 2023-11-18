@@ -27,8 +27,7 @@ def check_password():
             st.session_state["password_correct"] = False
 
     # Return True if the passward is validated.
-    if st.session_state.get("password_correct", False):
-        return True
+
 
     # Show input for password.
     with st.form("password form"):
@@ -36,6 +35,8 @@ def check_password():
         submitted = st.form_submit_button("Login")
         if submitted:
             password_entered()
+            if st.session_state.get("password_correct", False):
+                return True
             if "password_correct" in st.session_state:
                 st.error("😕 Password incorrect")
     return False
