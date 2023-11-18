@@ -76,7 +76,6 @@ for i in range(1, (2 + 1)):
     # df = df.append(dfPage).reset_index(drop=True)
     print(str(i) + " out of " + str(json_string["numPages"]))
 progressBar.empty()
-print("length of dataframe: " +str(len(df)))
 try:
     if len(df) > 0:
         df = df.drop_duplicates("mlsNumber")
@@ -275,7 +274,7 @@ def to_excel(df) -> bytes:
     output = io.BytesIO()
     writer = pd.ExcelWriter(output, engine="xlsxwriter")
     df.to_excel(writer, sheet_name="Sheet1")
-    writer.save()
+    writer.close()
     processed_data = output.getvalue()
     return processed_data
 
