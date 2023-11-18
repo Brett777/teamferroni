@@ -104,8 +104,8 @@ try:
 
         commercial = df.columns[df.columns.str.startswith('commercial')]
         df.drop(commercial, axis=1, inplace=True)
-        df["listDate"] = pd.to_datetime(df["listDate"], format='%Y-%m-%d', utc=None).dt.tz_localize(None)
-        df["soldDate"] = pd.to_datetime(df["soldDate"], format='%Y-%m-%d').dt.tz_localize(None)
+        df["listDate"] = pd.to_datetime(df["listDate"]).dt.date
+        df["soldDate"] = pd.to_datetime(df["soldDate"]).dt.date
         if boardId != "19":
             df["details.sqft"] = df["details.sqft"].str.replace('5000+', '5000-6000')
             df["details.sqft"] = df["details.sqft"].str.replace('6000+', '6000-7000')
