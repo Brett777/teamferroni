@@ -59,8 +59,8 @@ col1, col2 = container1.columns([1,3])
 progressBar = st.progress(0, text="")
 
 
-# for i in range(1, (json_string["numPages"] + 1)):
-for i in range(1, (2 + 1)):
+for i in range(1, (json_string["numPages"] + 1)):
+#for i in range(1, (2 + 1)):
     with col1:
         progressBar.progress(value=i/(json_string["numPages"] + 1), text="Getting historical sales data... " +str(i))
     conn = http.client.HTTPSConnection("api.repliers.io")
@@ -219,7 +219,7 @@ df["association_id"] = df["address.unitNumber"].astype(str) + df["address.street
 df["listDate"] = pd.to_datetime(df["listDate"]).dt.date
 df["soldDate"] = pd.to_datetime(df["soldDate"]).dt.date
 
-with st.spinner("Processing Estimates"):
+with st.spinner("Processing Estimates. This usually takes about 30 seconds, hang tight..."):
 
     dr.Client(token=drKey, endpoint='https://app.datarobot.com/api/v2')
 
@@ -268,7 +268,7 @@ with st.spinner("Processing Estimates"):
 
 st.header("Team Ferroni Sales")
 st.caption("Click the download button below to get this data as a spreadsheet.")
-st.dataframe(AJsProperties_scored)
+st.dataframe(AJsProperties_scored.sort_values("soldDate", ascending=False))
 def to_excel(df) -> bytes:
     output = io.BytesIO()
     writer = pd.ExcelWriter(output, engine="xlsxwriter")
